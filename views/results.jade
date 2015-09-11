@@ -1,0 +1,58 @@
+extends layout
+
+block content
+   .logoContainer(style="bottom-margin:50px")
+      a(href="/")
+         img(src="images/pokeQuery.jpg")
+   table.table.table-striped
+      tr
+         th Name
+         th Links
+         th Tier
+         th HP
+         th Attack
+         th Defense
+         th Special Attack
+         th Special Defence
+         th Speed
+      each pokemon in results
+         tr
+            th #{pokemon.name}
+            td
+               div.btn-group(role="group")
+                  if pokemon.dex.toString().length === 1
+                     - var link = "http://www.serebii.net/pokedex-xy/00"+pokemon.dex+".shtml"
+                  else if pokemon.dex.toString().length === 2
+                     - var link = "http://www.serebii.net/pokedex-xy/0"+pokemon.dex+".shtml"
+                  else
+                     - var link = "http://www.serebii.net/pokedex-xy/"+pokemon.dex+".shtml"
+                  a.btn.btn-default(type="button" href="#{link}" target="_blank") Serebii
+                  a.btn.btn-default(type="button" href="http://www.smogon.com/dex/xy/pokemon/"+pokemon.name target="_blank") Smogon
+            if pokemon.tier == 10
+               td AG
+            else if pokemon.tier == 9
+               td Uber
+            else if pokemon.tier == 8
+               td OU
+            else if pokemon.tier == 7
+               td BL1
+            else if pokemon.tier == 6
+               td UU
+            else if pokemon.tier == 5
+               td BL2
+            else if pokemon.tier == 4
+               td RU
+            else if pokemon.tier == 3
+               td BL3
+            else if pokemon.tier == 2
+               td NU
+            else if pokemon.tier == 1
+               td NFE
+            else if pokemon.tier == 0
+               td LC
+            td #{pokemon.hp}
+            td #{pokemon.atk}
+            td #{pokemon.def}
+            td #{pokemon.spatk}
+            td #{pokemon.spdef}
+            td #{pokemon.spd}

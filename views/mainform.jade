@@ -1,0 +1,60 @@
+extends layout
+
+block content
+   .logoContainer
+      img(src="images/pokeQuery.jpg")
+   .formContainer.container
+      script(type="text/javascript" src="javascripts/mainForm.js")
+      form(method="post" action="/results")
+         table.formTable
+            tr
+               td
+                  input.radioType(type="radio" name="type" checked="checked" style="margin-right: 5px" value="specificType")
+                  label Type:
+               td
+                  input.form-control.inputType(type="text" placeholder="Eg. Psychic" name="specificType")
+               td
+                  input.radioResists(type="radio" name="type" style="margin-right: 5px" value="resistsType")
+                  label Resists:
+               td
+                  input.form-control.inputResists(type="text" disabled="disabled" placeholder="Eg. Psychic" name="resistsType")
+            tr
+               td
+                  label Learns:
+               td(colspan="3")
+                  input.form-control.inputMoves(type="text" placeholder="Eg. Hypnosis" name="learns")
+            tr
+               td
+                  label Ability:
+               td
+                  input.form-control.inputAbility(type="text" placeholder="Eg. Synchronize" name="ability")
+               td
+                  label Desired Stat:
+               td
+                  select.form-control(name="stat")
+                     option(value="hp") HP
+                     option(value="atk") Attack
+                     option(value="def") Defence
+                     option(value="spatk") Special Attack
+                     option(value="spdef") Special Defence
+                     option(value="spd") Speed
+            tr
+               td
+                  label Tier:
+               td
+                  select.form-control(name="tier")
+                     option(value="uber") Uber
+                     option(value="ou") OU
+                     option(value="uu") UU
+                     option(value="ru") RU
+                     option(value="ru") NU
+                     option(value="lc") LC
+               td(colspan="2")
+            tr
+               td
+               td
+                  input(type="checkbox" style="margin: 10px" name="includeLower" value="yes")
+                  label Include all legal sub-tiers
+               td
+               td(align="right")
+                  button.btn.btn-primary(type="submit") Search
